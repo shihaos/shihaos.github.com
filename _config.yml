@@ -73,6 +73,11 @@ github_skip_forks: true
 twitter_user:
 twitter_tweet_button: true
 
+#weibo
+weibo_user: ways赵仕豪 # 微博数字 ID 或域名 ID
+dribbble_user: 
+weibo_share: true # 是否开启微博分享按钮
+
 # Google +1
 google_plus_one: false
 google_plus_one_size: medium
