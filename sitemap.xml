@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://shihaos.github.io/blog/2015/08/12/hello-world/</loc>
-    <lastmod>2015-08-12T23:59:57+08:00</lastmod>
+    <loc>http://shihaos.github.io/blog/2015/08/15/swiftxue-xi-dai-ma-zhi-mei-bi-bao/</loc>
+    <lastmod>2015-08-15T15:21:06+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://shihaos.github.io/blog/2015/08/15/hello-world/</loc>
+    <lastmod>2015-08-15T15:21:06+08:00</lastmod>
   </url>
   <url>
     <loc>http://shihaos.github.io/blog/archives/</loc>
