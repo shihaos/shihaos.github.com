@@ -52,7 +52,7 @@
 <nav id="sub-nav">
 	<div class="social">
 		
-		<a class="weibo" href="http://www.weibo.com/ways赵仕豪" title="Weibo">Weibo</a>
+		<a class="weibo" href="http://www.weibo.com/qqways" title="Weibo">Weibo</a>
 		
 		
 		
@@ -119,6 +119,9 @@
 	
 	<a class="addthis_button_sinaweibo"></a>
 	
+	｛% if site.weibo_share %｝
+     ｛% include post/weibo.html %｝
+ 	｛% endif %｝
 	
 	
 	<a class="addthis_button_twitter"></a>
@@ -130,6 +133,9 @@
 	</div>
   <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
 </div>
+｛% if site.weibo_share %｝
+     ｛% include post/weibo.html %｝
+ ｛% endif %｝
 
 
 </div>
