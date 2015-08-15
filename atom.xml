@@ -4,7 +4,7 @@
   <title><![CDATA[Shihaos]]></title>
   <link href="http://shihaos.github.io/atom.xml" rel="self"/>
   <link href="http://shihaos.github.io/"/>
-  <updated>2015-08-15T20:03:07+08:00</updated>
+  <updated>2015-08-15T20:24:38+08:00</updated>
   <id>http://shihaos.github.io/</id>
   <author>
     <name><![CDATA[shihaos]]></name>
@@ -183,24 +183,23 @@ var incrementByTen2 = incrementByTen
     <updated>2015-08-12T15:21:06+08:00</updated>
     <id>http://shihaos.github.io/blog/2015/08/12/hello-world</id>
     <content type="html"><![CDATA[<ul>
-<li>Hello world!我是玉渊，现在是阿里巴巴聚划算事业部的iOS开发工程师，iOS小白一枚，多多赐教！</li>
+<li><p>Hello world!</p></li>
+<li><p>我是玉渊，现在是阿里巴巴聚划算事业部的iOS开发工程师，iOS小白一枚，多多赐教！</p></li>
 </ul>
 
 
 <h1>个人信息</h1>
 
 <ul>
-<li>赵仕豪/男/1989</li>
-<li>本科/华南师范大学    计算机学院  2009.9 - 2013.6</li>
-<li>硕士/浙江大学    软件学院  2013.9 - 2015.6</li>
-<li>现在就职：阿里巴巴集团 聚划算事业部  iOS开发工程师</li>
-<li>微博：<a href="http://weibo.com/qqways">@ways赵仕豪</a></li>
-<li>技术博客：<a href="http://shihaos.github.io">http://shihaos.github.io</a>
-
-<ul>
-<li>Github: <a href="http://github.com/shihaos">http://github.com/shihaos</a></li>
-</ul>
-</li>
+<li><p>赵仕豪/男/1989</p></li>
+<li><p>广东广州</p></li>
+<li><p>本科/华南师范大学 &mdash;   计算机学院 &mdash; 2009.9 - 2013.6</p></li>
+<li><p>硕士/浙江大学    &mdash; 软件学院 &mdash; 2013.9 - 2015.6</p></li>
+<li><p>现在就职：阿里巴巴集团 聚划算事业部  iOS开发工程师</p></li>
+<li><p>微博：<a href="http://weibo.com/qqways">@ways赵仕豪</a></p></li>
+<li><p>技术博客：<a href="http://shihaos.github.io">http://shihaos.github.io</a></p></li>
+<li><p>Github: <a href="http://github.com/shihaos">http://github.com/shihaos</a></p></li>
+<li><p>Email: <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#115;&#x68;&#x69;&#x68;&#97;&#111;&#x73;&#49;&#50;&#64;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#x6d;">&#x73;&#x68;&#x69;&#104;&#97;&#x6f;&#x73;&#x31;&#50;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#109;</a></p></li>
 </ul>
 
 
