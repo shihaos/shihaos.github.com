@@ -4,7 +4,7 @@
   <title><![CDATA[Shihaos]]></title>
   <link href="http://shihaos.github.io/atom.xml" rel="self"/>
   <link href="http://shihaos.github.io/"/>
-  <updated>2015-08-15T22:47:43+08:00</updated>
+  <updated>2015-08-17T13:00:50+08:00</updated>
   <id>http://shihaos.github.io/</id>
   <author>
     <name><![CDATA[shihaos]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C warnings的屏蔽]]></title>
+    <link href="http://shihaos.github.io/blog/2015/08/17/objective-cping-fei-qi-fang-fa-dao-zhi-de-warnings/"/>
+    <updated>2015-08-17T12:37:05+08:00</updated>
+    <id>http://shihaos.github.io/blog/2015/08/17/objective-cping-fei-qi-fang-fa-dao-zhi-de-warnings</id>
+    <content type="html"><![CDATA[<h2>处理编译器的警告</h2>
+
+<p>在项目不断发展需要兼容低版本，如iOS6.0以及更低版本的时候，编译出来就会有上百个warnings，究其原因就是因为有很多低版本的方法在高版本的SDK中被deprecated，所以我们需要做的只能是屏蔽warnins,添加toDo注释，等兼容最低版本提高时再替换方法；</p>
+
+<h4>1、弃用方法的warnings屏蔽</h4>
+
+<pre>
+#pragma clang diagnostic push  
+  
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"       
+//调用废弃的方法 
+#pragma clang diagnostic pop   
+</pre>
+
+
+<h4>2、指针类型不兼容warnings屏蔽</h4>
+
+<pre>
+#pragma clang diagnostic push   
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"   
+//类型不兼容的代码段 
+#pragma clang diagnostic pop  
+</pre>
+
+
+<h4>3、尚未使用的变量或方法用unused标记</h4>
+
+<pre>
+#pragma clang diagnostic push   
+#pragma clang diagnostic ignored "-Wunused-variable"   
+//有未使用的变量或者方法 
+#pragma clang diagnostic pop 
+</pre>
+
+
+<h4>4、保留环问题，不过建议最好直接修改代码</h4>
+
+<pre>
+the retain cycle.  
+#pragma clang diagnostic push  
+#pragma clang diagnostic ignored "-Warc-retain-cycles"  
+    self.completionBlock = ^ {  
+        ...  
+    };  
+#pragma clang diagnostic pop  
+</pre>
+
+
+<p>以上方法可以解决大部分现有项目因为废弃或者其他原因造成的warnings</p>
+
+<h4>如果需要更进一步了解</h4>
+
+<p><a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas">http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Swift学习 -代码之美——闭包]]></title>
@@ -199,7 +260,7 @@ var incrementByTen2 = incrementByTen
 <li><p>微博：<a href="http://weibo.com/qqways">@ways赵仕豪</a></p></li>
 <li><p>技术博客：<a href="http://shihaos.github.io">http://shihaos.github.io</a></p></li>
 <li><p>Github: <a href="http://github.com/shihaos">http://github.com/shihaos</a></p></li>
-<li><p>Email: <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x73;&#x68;&#105;&#104;&#97;&#111;&#115;&#x31;&#x32;&#x40;&#49;&#x36;&#51;&#x2e;&#99;&#111;&#109;">&#x73;&#x68;&#x69;&#x68;&#97;&#111;&#115;&#49;&#x32;&#64;&#49;&#x36;&#x33;&#46;&#99;&#111;&#109;</a></p></li>
+<li><p>Email: <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x73;&#x68;&#x69;&#104;&#x61;&#x6f;&#115;&#49;&#50;&#x40;&#49;&#54;&#x33;&#46;&#99;&#x6f;&#x6d;">&#115;&#x68;&#105;&#104;&#97;&#x6f;&#115;&#49;&#x32;&#x40;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#109;</a></p></li>
 </ul>
 
 
