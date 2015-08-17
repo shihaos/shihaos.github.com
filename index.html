@@ -109,47 +109,9 @@
 </pre>
 
 
-<h4>2、指针类型不兼容warnings屏蔽</h4>
-
-<pre>
-#pragma clang diagnostic push   
-#pragma clang diagnostic ignored "-Wincompatible-pointer-types"   
-//类型不兼容的代码段 
-#pragma clang diagnostic pop  
-</pre>
-
-
-<h4>3、尚未使用的变量或方法用unused标记</h4>
-
-<pre>
-#pragma clang diagnostic push   
-#pragma clang diagnostic ignored "-Wunused-variable"   
-//有未使用的变量或者方法 
-#pragma clang diagnostic pop 
-</pre>
-
-
-<h4>4、保留环问题，不过建议最好直接修改代码</h4>
-
-<pre>
-the retain cycle.  
-#pragma clang diagnostic push  
-#pragma clang diagnostic ignored "-Warc-retain-cycles"  
-    self.completionBlock = ^ {  
-        ...  
-    };  
-#pragma clang diagnostic pop  
-</pre>
-
-
-<p>以上方法可以解决大部分现有项目因为废弃或者其他原因造成的warnings</p>
-
-<h4>如果需要更进一步了解</h4>
-
-<p><a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas">http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas</a></p>
 
 		
-		
+		<a href="/blog/2015/08/17/objective-cping-fei-qi-fang-fa-dao-zhi-de-warnings/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -238,7 +200,7 @@ the retain cycle.
 <li><p>微博：<a href="http://weibo.com/qqways">@ways赵仕豪</a></p></li>
 <li><p>技术博客：<a href="http://shihaos.github.io">http://shihaos.github.io</a></p></li>
 <li><p>Github: <a href="http://github.com/shihaos">http://github.com/shihaos</a></p></li>
-<li><p>Email: <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x73;&#x68;&#x69;&#104;&#x61;&#x6f;&#115;&#49;&#50;&#x40;&#49;&#54;&#x33;&#46;&#99;&#x6f;&#x6d;">&#115;&#x68;&#105;&#104;&#97;&#x6f;&#115;&#49;&#x32;&#x40;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#109;</a></p></li>
+<li><p>Email: <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x73;&#104;&#105;&#104;&#97;&#111;&#x73;&#x31;&#50;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#104;&#105;&#x68;&#x61;&#111;&#115;&#x31;&#x32;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#109;</a></p></li>
 </ul>
 
 
