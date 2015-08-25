@@ -4,7 +4,7 @@
   <title><![CDATA[Shihaos]]></title>
   <link href="http://shihaos.github.io/atom.xml" rel="self"/>
   <link href="http://shihaos.github.io/"/>
-  <updated>2015-08-17T13:02:58+08:00</updated>
+  <updated>2015-08-25T12:59:57+08:00</updated>
   <id>http://shihaos.github.io/</id>
   <author>
     <name><![CDATA[shihaos]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[【转】会报编译器警告的Xcode 6.3新特性：Nullability Annotations]]></title>
+    <link href="http://shihaos.github.io/blog/2015/08/25/%5B(zhuan-)%5D-hui-bao-bian-yi-qi-jing-gao-de-xcode-6-dot-3xin-te-xing-:nullability-annotations/"/>
+    <updated>2015-08-25T12:56:13+08:00</updated>
+    <id>http://shihaos.github.io/blog/2015/08/25/[(zhuan-)]-hui-bao-bian-yi-qi-jing-gao-de-xcode-6-dot-3xin-te-xing-:nullability-annotations</id>
+    <content type="html"><![CDATA[<p>最近在用Xcode 6.3写代码，一些涉及到对象的代码会报如下编译器警告：</p>
+
+<p>Pointer is missing a nullability type specifier (<strong>nonnull or </strong>nullable)</p>
+
+<p>于是google了一下，发现这是Xcode 6.3的一个新特性，即nullability annotations。</p>
+
+<!--more-->
+
+
+<h4>Nullability Annotations</h4>
+
+<p>我们都知道在swift中，可以使用!和?来表示一个对象是optional的还是non-optional，如view?和view!。而在Objective-C中则没有这一区分，view即可表示这个对象是optional，也可表示是non-optioanl。这样就会造成一个问题：在Swift与Objective-C混编时，Swift编译器并不知道一个Objective-C对象到底是optional还是non-optional，因此这种情况下编译器会隐式地将Objective-C的对象当成是non-optional。</p>
+
+<p>为了解决这个问题，苹果在Xcode 6.3引入了一个Objective-C的新特性：nullability annotations。这一新特性的核心是两个新的类型注释：<strong>nullable和</strong>nonnull。从字面上我们可以猜到，<strong>nullable表示对象可以是NULL或nil，而</strong>nonnull表示对象不应该为空。当我们不遵循这一规则时，编译器就会给出警告。</p>
+
+<p>我们来看看以下的实例，</p>
+
+<pre>
+@interface TestNullabilityClass ()
+@property (nonatomic, copy) NSArray * items;
+- (id)itemWithName:(NSString * __nonnull)name;
+@end
+@implementation TestNullabilityClass
+...
+- (void)testNullability {
+    [self itemWithName:nil];    // 编译器警告：Null passed to a callee that requires a non-null argument
+}
+- (id)itemWithName:(NSString * __nonnull)name {
+    return nil;
+}
+@end
+</pre>
+
+
+<p>不过这只是一个警告，程序还是能编译通过并运行。</p>
+
+<p>事实上，在任何可以使用const关键字的地方都可以使用<strong>nullable和</strong>nonnull，不过这两个关键字仅限于使用在指针类型上。而在方法的声明中，我们还可以使用不带下划线的nullable和nonnull，如下所示：</p>
+
+<pre>
+- (nullable id)itemWithName:(NSString * nonnull)name
+</pre>
+
+
+<p>在属性声明中，也增加了两个相应的特性，因此上例中的items属性可以如下声明：</p>
+
+<pre>
+@property (nonatomic, copy, nonnull) NSArray * items;
+</pre>
+
+
+<p>当然也可以用以下这种方式：</p>
+
+<pre>
+@property (nonatomic, copy) NSArray * __nonnull items;
+</pre>
+
+
+<p>推荐使用nonnull这种方式，这样可以让属性声明看起来更清晰。</p>
+
+<h4>Nonnull区域设置(Audited Regions)</h4>
+
+<p>如果需要每个属性或每个方法都去指定nonnull和nullable，是一件非常繁琐的事。苹果为了减轻我们的工作量，专门提供了两个宏：NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END。在这两个宏之间的代码，所有简单指针对象都被假定为nonnull，因此我们只需要去指定那些nullable的指针。如下代码所示：</p>
+
+<pre>
+NS_ASSUME_NONNULL_BEGIN
+@interface TestNullabilityClass ()
+@property (nonatomic, copy) NSArray * items;
+- (id)itemWithName:(nullable NSString *)name;
+@end
+NS_ASSUME_NONNULL_END
+</pre>
+
+
+<p>在上面的代码中，items属性默认是nonnull的，itemWithName:方法的返回值也是nonnull，而参数是指定为nullable的。</p>
+
+<p>不过，为了安全起见，苹果还制定了几条规则：</p>
+
+<p>typedef定义的类型的nullability特性通常依赖于上下文，即使是在Audited Regions中，也不能假定它为nonnull。
+复杂的指针类型(如id *)必须显示去指定是nonnull还是nullable。例如，指定一个指向nullable对象的nonnull指针，可以使用”<strong>nullable id * </strong>nonnull”。
+我们经常使用的NSError **通常是被假定为一个指向nullable NSError对象的nullable指针。
+兼容性</p>
+
+<p>因为Nullability Annotations是Xcode 6.3新加入的，所以我们需要考虑之前的老代码。实际上，苹果已以帮我们处理好了这种兼容问题，我们可以安全地使用它们：</p>
+
+<p>老代码仍然能正常工作，    即使对nonnull对象使用了nil也没有问题。
+老代码在需要和swift混编时，在新的swift编译器下会给出一个警告。</p>
+
+<p>nonnull不会影响性能。事实上，我们仍然可以在运行时去判断我们的对象是否为nil。
+事实上，我们可以将nonnull/nullable与我们的断言和异常一起看待，其需要处理的问题都是同一个：违反约定是一个程序员的错误。特别是，返回值是我们可控的东西，如果返回值是nonnull的，则我们不应该返回nil，除非是为了向后兼容。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Objective-C warnings的屏蔽]]></title>
@@ -263,7 +360,7 @@ var incrementByTen2 = incrementByTen
 <li><p>微博：<a href="http://weibo.com/qqways">@ways赵仕豪</a></p></li>
 <li><p>技术博客：<a href="http://shihaos.github.io">http://shihaos.github.io</a></p></li>
 <li><p>Github: <a href="http://github.com/shihaos">http://github.com/shihaos</a></p></li>
-<li><p>Email: <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x73;&#104;&#105;&#104;&#97;&#111;&#x73;&#x31;&#50;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#104;&#105;&#x68;&#x61;&#111;&#115;&#x31;&#x32;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#109;</a></p></li>
+<li><p>Email: <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#115;&#104;&#105;&#104;&#x61;&#111;&#115;&#49;&#x32;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">&#115;&#104;&#105;&#x68;&#97;&#111;&#x73;&#49;&#50;&#64;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#109;</a></p></li>
 </ul>
 
 

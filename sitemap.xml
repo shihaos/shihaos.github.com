@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://shihaos.github.io/blog/2015/08/25/%5B(zhuan-)%5D-hui-bao-bian-yi-qi-jing-gao-de-xcode-6-dot-3xin-te-xing-:nullability-annotations/</loc>
+    <lastmod>2015-08-25T12:56:13+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://shihaos.github.io/blog/2015/08/17/objective-cping-fei-qi-fang-fa-dao-zhi-de-warnings/</loc>
     <lastmod>2015-08-17T12:37:05+08:00</lastmod>
   </url>
